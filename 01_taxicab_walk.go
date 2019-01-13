@@ -18,7 +18,7 @@ func main() {
 	ins.Test(1, `R2, L3`, `5`)
 	ins.Test(1, `R2, R2, R2`, `2`)
 	ins.Test(1, `R5, L5, R5, R3`, `12`)
-	ins.Test(1|2, `R8, R4, R4, R8`, `8`, `4`)
+	ins.Test(2, `R8, R4, R4, R8`, `4`)
 	ins.Advent(2016, 1)
 
 	for par := range ins.Iterate() {

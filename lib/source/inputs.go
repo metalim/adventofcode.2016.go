@@ -73,7 +73,7 @@ func (i *inputBase) DrySubmitInt(part uint, val int) bool {
 func (i *inputBase) canProcess(part uint) bool {
 	switch part {
 	case 2:
-		return i.valid[0]
+		return !i.Part(1) || i.valid[0]
 	}
 	return true
 }
