@@ -12,7 +12,9 @@ type Map struct {
 // Get cell.
 func (f *Map) Get(p Pos) Cell {
 	if r, ok := f.m[p.Y]; ok {
-		return r[p.X]
+		if c, ok := r[p.X]; ok {
+			return c
+		}
 	}
 	return f.def
 }
