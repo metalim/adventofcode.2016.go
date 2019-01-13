@@ -1,0 +1,5 @@
+test/
+extras/*.cookie
+inputs/*.cookie
+results/*.cookie
+get_advent
