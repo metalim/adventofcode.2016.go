@@ -7,8 +7,6 @@ import (
 	. "github.com/logrusorgru/aurora"
 )
 
-var test1 = `zzz`
-
 func main() {
 	var ins source.Inputs
 
