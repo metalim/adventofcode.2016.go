@@ -6,12 +6,16 @@
 
 ## Day 1
 
-* Input:
-* Structure:
-* Process:
+* Walking on grid with field.Step4.
 
-## Day
+## Day 2
 
-* Input:
-* Structure:
-* Process:
+* Walking on grid filled by field.FillFromString.
+
+## Day 3
+
+* Simple triangle check.
+
+## Day 4
+
+* sort.Stable.

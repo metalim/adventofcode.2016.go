@@ -13,7 +13,7 @@ Goals:
 
 Go is low-level language with built-in concurrency and garbage collection, designed as a highly efficient C++ or Java competitor. To achieve high speed (both in compilation and execution), some surprising design decisions were made. It takes time to learn them.
 
-For list of quirks found previously, refer to [README of my Go solutions for year 2018](https://github.com/metalim/metalim.adventofcode.2018.go/blob/master/README.md#go-gotchas) and [README of my Go solutions for year 2017](https://github.com/metalim/metalim.adventofcode.2017.go/blob/master/README.md#go-gotchas).
+For list of quirks found previously, refer to README of my Go solutions for year [2018](https://github.com/metalim/metalim.adventofcode.2018.go/blob/master/README.md#go-gotchas) and [2017](https://github.com/metalim/metalim.adventofcode.2017.go/blob/master/README.md#go-gotchas).
 
 ## Puzzle inputs
 
