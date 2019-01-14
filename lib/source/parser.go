@@ -3,6 +3,7 @@ package source
 import (
 	"log"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -59,6 +60,36 @@ func (par *Parser) Split(sep string) *Parser {
 // Lines split by \n.
 func (par *Parser) Lines() *Parser {
 	return par.Split("\n")
+}
+
+// Int converts all values to integers.
+func (par *Parser) Int() *Parser {
+	// log.Printf("Int for %#v\n", par.data)
+	switch v := par.data.(type) {
+	case string:
+		par.data, _ = strconv.Atoi(v)
+
+	case []string:
+		data := make([]int, len(v))
+		for i, s := range v {
+			data[i], _ = strconv.Atoi(s)
+		}
+		par.data = data
+	case [][]string:
+		data := make([][]int, 0, len(v))
+		for _, ss := range v {
+			r := make([]int, len(ss))
+			for i, s := range ss {
+				r[i], _ = strconv.Atoi(s)
+			}
+			data = append(data, r)
+		}
+		par.data = data
+	default:
+		log.Fatalf("unsupported split level %T", v)
+	}
+	// log.Println("Int complete", par.data)
+	return par
 }
 
 // Data returns result.
