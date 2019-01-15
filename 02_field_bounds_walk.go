@@ -44,7 +44,7 @@ func main() {
 	}
 }
 
-func getCode(f field.Field, p field.Pos, sl []string) string {
+func getCode(f field.Interface, p field.Pos, sl []string) string {
 	var out strings.Builder
 	var p2 field.Pos
 	for _, l := range sl {

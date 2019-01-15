@@ -16,8 +16,8 @@ type Pos = image.Point
 // Rect = image.Rectangle
 type Rect = image.Rectangle
 
-// Field is two-dimensional.
-type Field interface {
+// Interface is two-dimensional.
+type Interface interface {
 	Get(Pos) Cell
 	Set(Pos, Cell)
 	Bounds() Rect
@@ -52,7 +52,7 @@ func (f *fieldBase) Bounds() Rect {
 // Common "methods", actually functions.
 
 // Print field
-func Print(f Field) {
+func Print(f Interface) {
 	bs := f.Bounds()
 	r := make([]string, 0, bs.Dx())
 	for y := bs.Min.Y; y < bs.Max.Y; y++ {
@@ -70,7 +70,7 @@ func Print(f Field) {
 }
 
 // Rotate90 rectangle 90°.
-func Rotate90(f Field, rect Rect) {
+func Rotate90(f Interface, rect Rect) {
 	cy := rect.Dy()
 	cx := rect.Dx()
 	if cx != cy {
@@ -98,7 +98,7 @@ func Rotate90(f Field, rect Rect) {
 }
 
 // FlipVert a rectangle.
-func FlipVert(f Field, rect Rect) {
+func FlipVert(f Interface, rect Rect) {
 	dy := rect.Dy()
 	for y := 0; y < dy/2; y++ {
 		for x := rect.Min.X; x < rect.Max.X; x++ {
@@ -111,7 +111,7 @@ func FlipVert(f Field, rect Rect) {
 }
 
 // FillFromString from start position.
-func FillFromString(f Field, start Pos, s string) {
+func FillFromString(f Interface, start Pos, s string) {
 	for y, l := range strings.Split(s, "\n") {
 		for x, r := range l {
 			f.Set(start.Add(Pos{x, y}), Cell(r))
@@ -120,7 +120,7 @@ func FillFromString(f Field, start Pos, s string) {
 }
 
 // ToString rect.
-func ToString(f Field, rect Rect) string {
+func ToString(f Interface, rect Rect) string {
 	var s strings.Builder
 	for y := rect.Min.Y; y < rect.Max.Y; y++ {
 		if s.Len() > 0 {

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func runTestsOn(t *testing.T, f Field) {
+func runTestsOn(t *testing.T, f Interface) {
 
 	verify := func(v, ex interface{}) {
 		if v != ex {
@@ -76,7 +76,7 @@ const (
 	d0  = -50
 )
 
-func runBenchOn(b *testing.B, f Field) {
+func runBenchOn(b *testing.B, f Interface) {
 	for i := 0; i < b.N; i++ {
 		p := Pos{rand.Intn(dim) + d0, rand.Intn(dim) + d0}
 		c := Cell(rand.Intn(100))
