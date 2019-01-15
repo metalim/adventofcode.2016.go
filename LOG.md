@@ -29,3 +29,7 @@
 ## Day 6
 
 * Generic **Frequency map** should come in handy. This was fastest solved task in year 2016 (top100 - 375s), due to some languages have library functions to get most frequent and least frequent value in set.
+
+## Day 7
+
+* Search for ABBA-type substrings, ABA and BAB-type correlations.
