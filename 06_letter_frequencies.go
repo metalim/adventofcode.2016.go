@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"metalim/advent/2016/lib/freq"
 	"metalim/advent/2016/lib/source"
 
 	. "github.com/logrusorgru/aurora"
@@ -39,16 +39,12 @@ func main() {
 		if par.Part(1) {
 			out := make([]byte, len(sl[0]))
 			for i := range sl[0] {
-				max := 0
-				fs := map[byte]int{}
+				fs := freq.Map{}
 				for _, l := range sl {
-					b := l[i]
-					fs[b]++
-					if max < fs[b] {
-						max = fs[b]
-						out[i] = b
-					}
+					fs.Add(l[i])
 				}
+				s := fs.Sorted()
+				out[i] = s[len(s)-1].V.(byte)
 			}
 			par.Submit(1, string(out))
 		}
@@ -56,18 +52,12 @@ func main() {
 		if par.Part(2) {
 			out := make([]byte, len(sl[0]))
 			for i := range sl[0] {
-				fs := map[byte]int{}
+				fs := freq.Map{}
 				for _, l := range sl {
-					b := l[i]
-					fs[b]++
+					fs.Add(l[i])
 				}
-				min := math.MaxInt64
-				for b, f := range fs {
-					if min > f {
-						min = f
-						out[i] = b
-					}
-				}
+				s := fs.Sorted()
+				out[i] = s[0].V.(byte)
 			}
 			par.Submit(2, string(out))
 		}
