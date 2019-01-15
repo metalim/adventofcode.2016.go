@@ -16,7 +16,7 @@ type Pos = image.Point
 // Rect = image.Rectangle
 type Rect = image.Rectangle
 
-// Interface is two-dimensional.
+// Interface for two-dimensional map.
 type Interface interface {
 	Get(Pos) Cell
 	Set(Pos, Cell)
