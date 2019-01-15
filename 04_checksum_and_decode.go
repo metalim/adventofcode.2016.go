@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"metalim/advent/2016/lib/freq"
 	"metalim/advent/2016/lib/source"
 	"regexp"
-	"sort"
 	"strconv"
 	"strings"
 
@@ -29,11 +29,10 @@ func main() {
 		fmt.Println(len(sw), Black(sw[0]).Bold())
 
 		if par.Part(1) {
-			reg := regexp.MustCompile("(.*)-(\\d+)\\[(.*)\\]")
 			var sum int
 			for _, s := range sw {
 				m := reg.FindStringSubmatch(s)
-				if getChecksum(m[1]) == m[3] {
+				if getChecksum(strings.Replace(m[1], "-", "", -1)) == m[3] {
 					n, _ := strconv.Atoi(m[2])
 					sum += n
 				}
@@ -42,7 +41,6 @@ func main() {
 		}
 
 		if par.Part(2) {
-			reg := regexp.MustCompile("(.*)-(\\d+)\\[(.*)\\]")
 			var n int
 			for _, s := range sw {
 				m := reg.FindStringSubmatch(s)
@@ -58,6 +56,21 @@ func main() {
 	}
 }
 
+var reg = regexp.MustCompile("(.*)-(\\d+)\\[(.*)\\]")
+
+func getChecksum(s string) string {
+	f := freq.RuneMap{}
+	for _, c := range s {
+		f.Add(c)
+	}
+	fs := f.Sorted()
+	rs := [5]rune{}
+	for i := 0; i < 5; i++ {
+		rs[i] = fs[i].V
+	}
+	return string(rs[:])
+}
+
 func decrypt(s string, key int) string {
 	var out strings.Builder
 	for _, r := range s {
@@ -71,40 +84,21 @@ func decrypt(s string, key int) string {
 	return out.String()
 }
 
-func getChecksum(s string) string {
-	f := map[rune]int{}
-	for _, c := range s {
-		f[c]++
-	}
-	fs := []freq{}
-	for r := rune('a'); r <= 'z'; r++ {
-		if f[r] > 0 {
-			fs = append(fs, freq{r, f[r]})
-		}
-	}
-	sort.Stable(byFreq(fs))
-	rs := [5]rune{}
-	for i := 0; i < 5; i++ {
-		rs[i] = fs[i].r
-	}
-	return string(rs[:])
-}
+// type freq struct {
+// 	r rune
+// 	f int
+// }
 
-type freq struct {
-	r rune
-	f int
-}
+// type byFreq []freq
 
-type byFreq []freq
+// func (f byFreq) Len() int {
+// 	return len(f)
+// }
 
-func (f byFreq) Len() int {
-	return len(f)
-}
+// func (f byFreq) Less(i, j int) bool {
+// 	return f[i].f > f[j].f
+// }
 
-func (f byFreq) Less(i, j int) bool {
-	return f[i].f > f[j].f
-}
-
-func (f byFreq) Swap(i, j int) {
-	f[i], f[j] = f[j], f[i]
-}
+// func (f byFreq) Swap(i, j int) {
+// 	f[i], f[j] = f[j], f[i]
+// }
