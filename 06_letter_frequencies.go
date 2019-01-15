@@ -39,12 +39,12 @@ func main() {
 		if par.Part(1) {
 			out := make([]byte, len(sl[0]))
 			for i := range sl[0] {
-				fs := freq.Map{}
+				fs := freq.IMap{}
 				for _, l := range sl {
 					fs.Add(l[i])
 				}
 				s := fs.Sorted()
-				out[i] = s[len(s)-1].V.(byte)
+				out[i] = s[0].V.(byte)
 			}
 			par.Submit(1, string(out))
 		}
@@ -52,12 +52,12 @@ func main() {
 		if par.Part(2) {
 			out := make([]byte, len(sl[0]))
 			for i := range sl[0] {
-				fs := freq.Map{}
+				fs := freq.IMap{}
 				for _, l := range sl {
 					fs.Add(l[i])
 				}
 				s := fs.Sorted()
-				out[i] = s[0].V.(byte)
+				out[i] = s[len(s)-1].V.(byte)
 			}
 			par.Submit(2, string(out))
 		}
