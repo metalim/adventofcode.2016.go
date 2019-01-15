@@ -18,4 +18,9 @@
 
 ## Day 4
 
-* sort.Stable.
+* sort.Stable. Btw, it's internals are worth checking.
+
+## Day 5
+
+* crypto/md5.Sum.
+* no need to convert hash to string to check zeroes.
