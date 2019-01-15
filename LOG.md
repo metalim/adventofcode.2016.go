@@ -2,7 +2,7 @@
 
 ## Base structures
 
-* imported from 2017 solutions.
+* Library is imported from solutions for 2017.
 
 ## Day 1
 
@@ -23,4 +23,9 @@
 ## Day 5
 
 * crypto/md5.Sum.
-* no need to convert hash to string to check zeroes.
+* No need to convert hash to string to check zeroes.
+* Optimize: no need to use strconv.Itoa either.
+
+## Day 6
+
+* Generic **Frequency map** should come in handy. This was fastest solved task in year 2016 (top100 - 375s), due to some languages have library functions to get most frequent and least frequent value in set.
